@@ -162,6 +162,7 @@ body {
  /* фон + модальное окно */
  .backdrop{
      position: fixed;
+     z-index: 10;
      top: 0;
      left: 0;
      width: 100%;
@@ -172,7 +173,7 @@ body {
 
      background-color:  #00000033;
      
-     pointer-events: none;
+     
  }
 
  .is-hidden{
@@ -184,7 +185,7 @@ body {
  }
  .modal{
     
-    
+    pointer-events: auto;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -223,7 +224,7 @@ body {
     height: 30px;
     border-radius: 50%;
     border: 1px solid #0000001A;
-
+    transition: fill 250ms var(--cubic);
     background-color: var(--background-color-body);
     
 }
@@ -234,14 +235,20 @@ body {
 
 /* _______форма модальное окно_______ */
 .modal-form{
-    display: flex;
+    display:flex;
     flex-direction: column;
-
     padding: 40px;
-
+}
+.modal-form-label{
+    position: relative;
+    margin-bottom: 30px;
+}
+.modal-form-label:nth-child(5){
+    margin-bottom: 20px;
 }
 .modal-form-title{
-    font-family: Roboto;
+    margin-bottom: 30px;
+
     font-size: 20px;
     font-weight: 700;
     line-height: 1.15;
@@ -251,8 +258,128 @@ body {
     color: var(--color-head-basic);
 
 }
+.modal-form-input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding-left: 30px;
+    
+    transition: border-color 250ms var(--cubic);
+
+    border: 1px solid #21212133;
+    border-radius: 4px;
+    
+    box-shadow: 0px 2px 1px 0px #00000033;
+
+    box-shadow: 0px 1px 1px 0px #00000024;
+
+    box-shadow: 0px 1px 3px 0px #0000001F;
+
+}
+.modal-form-input:hover,
+.modal-form-input:not(:placeholder-shown){
+    border-color: var(--color-head-second);
+}
+.modal-form-input:hover + .modal-form-input-svg,
+.modal-form-input:not(:placeholder-shown) + .modal-form-input-svg{
+    fill: var(--color-head-second);  }
+
+.modal-form-input-name{
+    position: absolute;
+    left: 0;
+    top:-18px;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: 0.01em;
+}
+
+.modal-form-input-svg{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    transition: fill 250ms var(--cubic);
+    
+}
+.modal-form-texterea{
+    resize:none;
+
+    width: 100%;
+    height: 120px;
+    box-sizing: border-box;
+    padding: 12px 16px;
+
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.01em;
+
+    color: #75757580;
+    ;
+    
+    border: 1px solid #21212133;
+    border-radius: 4px;
+    
+    box-shadow: 0px 2px 1px 0px #00000033;
+
+    box-shadow: 0px 1px 1px 0px #00000024;
+
+    box-shadow: 0px 1px 3px 0px #0000001F;
+}
+.modal-form-texterea::placeholder{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.01em;
+
+    color: #75757580;
+    ;
+}
+
+.modal-form-checkbox-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+ .modal-form-checkbox{
+     position: absolute;
+     appearance: none;
+ }  
+
+.modal-form-checkbox:checked + .modal-form-checkbox-svg-ceck{
+    background-color: #2196F3;
+    border-color: transparent;
+    transition: background-color 250ms var(--cubic);
+    transition: border-color 250ms var(--cubic);
+}
+.modal-form-checkbox-svg-ceck{
+    margin-right: 8px;
+    box-sizing: border-box;
+    border: 2px solid var(--color-head-basic);
+    border-radius: 2px;
+    background-origin: border-box;
+    transition: border-color 250ms var(--cubic) ;
+}
+.modal-form-checkbox-text{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-content);
+}
+
+.modal-form-checkbox-text-b{
+    color: var(--color-head-second);
+    text-decoration: underline;}
 
 .modal-form-button{
+    margin: 0 auto;
     box-sizing:border-box;
 
     display: flex;
@@ -264,9 +391,6 @@ body {
     width: 200px;
     height: 50px;
 
-    pointer-events: auto;
-
-    font-family: Roboto;
     font-size: 16px;
     font-weight: 700;
     line-height: 1.87;
@@ -276,12 +400,9 @@ body {
     background-color: var(--color-head-second);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    
-
 }
 
-
- /* заказ услуг */
+ /********** заказ услуг **************/
     .hero-fon{
         max-width: 1600px;
         margin: 0 auto;
@@ -314,8 +435,6 @@ body {
     letter-spacing: 0.06em;
     
     text-align: center;
-
-    
  }
   .hero-button{
     padding: 10px 32px;
@@ -357,8 +476,6 @@ body {
     
     
     background-color: var(--color-fon);
- 
-
      }
  
  .quality-title{
@@ -372,13 +489,10 @@ body {
     text-transform: uppercase;  
     color: var(--color-head-basic);  
     
-    
  }
  .quality-desc{
     font-size: 14px;
     line-height: 1.7;
-    
-    
  }
  /* чем мы занимаемся */
 
@@ -543,8 +657,6 @@ body {
     color: var(--icon-color);
 
     transition: box-shadow 250ms var(--cubic),background-color 250ms var(--cubic),color 250ms var(--cubic);
-
-    
 
 }
     
